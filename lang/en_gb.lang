@@ -1,0 +1,33 @@
+glossar = Glossary
+glossar_title =  Terms and definitions
+
+glossar_settings = Settings
+
+glossar_info_title = Info
+glossar_info_readme = Readme
+glossar_info_modules = Output (Modules, CSS, JS)
+glossar_info_changelog = Changelog (German)
+glossar_info_licence = Licence
+
+glossar_info_readme_title = Quick Guide to use the Glossary Addons
+glossar_info_cangelog_title = Changelog
+glossar_info_licence_title = Licence
+glossar_info_modules_title = Output (Modules, CSS, JS)
+
+
+glossar_info_settings_title = Settings
+
+
+glossar_add = Add Term
+glossar_edit = Edit Term
+
+glossar_label_term = Term
+glossar_label_definition = Definition
+glossar_label_description = Description
+
+glossar_error_empty_term = Please insert the term.
+glossar_error_empty_definition = Please insert the definition.
+
+perm_general_glossar[general] = Glossary
+perm_general_glossar[settings] = Glossary: Settings
+perm_general_glossar[info] = Glossary: Infos

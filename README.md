@@ -1,2 +1,2 @@
-# glossar
-Glossar Addon für Redaxo 5
+### Glossar-AddOn für REDAXO 5 ###
+

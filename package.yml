@@ -1,14 +1,16 @@
 package: glossar
-version: '0.1'
+version: '0.2'
 author: Oliver Kreischer
 supportpage: https://github.com/olien/glossar/issues
 compile: 0
 
 page:
   title: 'translate:glossar'
-  perm: glossar[general]
-  pjax: false
-  icon: rex-icon fa-google
+  perm: glossar[]
+  pjax: true
+  icon: rex-icon fa-font
+  subpages:
+        main: { title: 'translate:glossar' }
 
 requires:
   redaxo: '>=5.1.0'

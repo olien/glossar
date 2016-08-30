@@ -17,13 +17,15 @@ glossar_info_modules_title = Output (Modules, CSS, JS)
 
 glossar_info_settings_title = Settings
 
-
 glossar_add = Add Term
 glossar_edit = Edit Term
 
+glossar_label_status = Status
 glossar_label_term = Term
 glossar_label_definition = Definition
 glossar_label_description = Description
+
+glossar_status_aktiv = active
 
 glossar_error_empty_term = Please insert the term.
 glossar_error_empty_definition = Please insert the definition.

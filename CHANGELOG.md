@@ -1,6 +1,6 @@
 
 ### Changelog ###
 
-### 12.08.2016 Version 0.1 ###
+### 30.08.2016 Version 0.1 ###
 
-- Erste Version
+- Erste Version basierend auf dem Addon "Sprog" von Thomas Blum

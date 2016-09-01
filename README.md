@@ -1,3 +1,4 @@
+
 ###REDAXO-AddOn: Glossar###
 ---
 
@@ -8,6 +9,9 @@ Zu jeder Sprache kann ein Begriff mit einer kurzen Definition und einer etwas l�
 * ein Begriff wird immer in allen Sprachen gelöscht!
 * sofern eine Sprache glöscht wird werden auch alle Einträge der Glossar Tabelle für diese Sprache gelöscht.
 * wird eine Sprache hinzugefügt werden alle Glossareinträge der "Hauptspreache" kopiert und inaktiv gesetzt.
+
+* Durch Klick auf die Tabellenbezeichner "ID" oder "Begriff" wird die Reihenfolge der Tabelle umsortiert.
+
 
 
 ---

@@ -2,8 +2,10 @@ glossar = Glossar
 glossar_title = Begriffe
 
 glossar_markitupinfo = Angelegt durch das Addon - Glossar -
+glossar_redactorinfo = Angelegt durch das Addon - Glossar -
 
 glossar_settings = Konfiguration
+glossar_max_characters = Verbleibende Zeichen:
 
 glossar_info = Info
 glossar_info_readme = Readme
@@ -15,6 +17,7 @@ glossar_info_readme_title = Readme
 glossar_info_cangelog_title = Changelog
 glossar_info_licence_title = Lizenz
 glossar_info_modules_title = Ausgaben (Module, CSS, JS)
+
 
 glossar_status_activated = Eintrag wurde aktiviert
 glossar_status_deactivated = Eintrag wurde deaktiviert
@@ -35,7 +38,8 @@ glossar_label_term = Begriff
 glossar_label_definition = Definition
 glossar_label_description = Beschreibung
 
-glossar_status_aktiv = aktiv
+glossar_status_aktiviert = aktiviert
+glossar_status_deaktiviert = deaktviert
 
 glossar_error_empty_term = Bitte geben Sie einen Begriff ein.
 glossar_error_empty_definition = Bitte geben Sie eine Definition ein.

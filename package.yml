@@ -1,5 +1,5 @@
 package: glossar
-version: '0.2'
+version: '0.3'
 author: Oliver Kreischer
 supportpage: https://github.com/olien/glossar/issues
 compile: 0

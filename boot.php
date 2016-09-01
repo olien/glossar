@@ -32,7 +32,7 @@ if (rex::isBackend() && rex::getUser()) {
   $page = $this->getProperty('page');
   $page['subpages']['info'] = ['title' => $this->i18n('glossar_info'), 'perm' =>'glossar[info]'];
   $page['subpages']['info']['subpages']['readme'] = ['title' => $this->i18n('glossar_info_readme')];
-  if (rex::getUser()->isAdmin() || rex::getUser()->hasPerm('glossar')) {
+  if (rex::getUser()->isAdmin() OR rex::getUser()->hasPerm('glossar')) {
     $page['subpages']['info']['subpages']['modules'] = ['title' => $this->i18n('glossar_info_modules')];
   }
   $page['subpages']['info']['subpages']['changelog'] = ['title' => $this->i18n('glossar_info_changelog')];
@@ -62,12 +62,11 @@ if (rex::isBackend() && rex::getUser()) {
                 if (rex::getUser()->getComplexPerm('clang')->hasPerm($id)) {
                     $page->addSubpage((new rex_be_page('clang' . $id, $clang->getName()))
                         ->setSubPath(rex_path::addon('glossar', 'pages/main.php'))
-
+    ->setIsActive($id == $clang_id)
                     );
                 }
             }
         } else {
-
             if (rex::getUser()->getComplexPerm('clang')->hasPerm($clang_id) ) {
               $page->addSubpage((new rex_be_page('clang' . $clang_id, $clang_name))
                 ->setSubPath(rex_path::addon('glossar', 'pages/main.php'))

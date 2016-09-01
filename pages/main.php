@@ -1,22 +1,26 @@
 <?php
 
-// Rechte für Sprache einbauen
-// Beispiel Modul installieren
-// Übersetzungen
-// Def. kürzen
-// Code verschönern
-// Redaxotro und Markitup berücksictigen
+$editor = '';
+// *************************************
+//  Redactor2
+// *************************************
+if(rex_addon::get('rex_redactor2')->isAvailable()) {
+ if (!rex_redactor2::profileExists('simple')) {
+    rex_redactor2::insertProfile('simple', $this->i18n('glossar_redactorinfo'), '300', '800', 'relative', 'bold,italic,underline,deleted,quote,sub,sup,code,unorderedlist,grouplink[internal|external|mailto]');
+  }
+  $editor = 'redactorEditor2-simple';
+}
 
 // *************************************
 //  MarkItUp
 // *************************************
 if(rex_addon::get('rex_markitup')->isAvailable()) {
   if (!rex_markitup::profileExists('simple')) {
-
   rex_markitup::insertProfile ('simple', $this->i18n('glossar_markitupinfo'), 'textile', 300, 800, 'relative', 'bold,italic,underline,deleted,quote,sub,sup,code,unorderedlist,grouplink[internal|external|mailto]');
-
   }
+  $editor = 'markitupEditor-simple';
 }
+
 
 $content = '';
 $message = '';
@@ -67,12 +71,12 @@ if ($func == '') {
     $list->addTableAttribute('class', 'table-striped');
 
 
-    /* Edit
+
       $tdIcon = '<i class="rex-icon fa-file-text-o"></i>';
       $thIcon = rex::getUser()->getComplexPerm('clang')->hasAll() ? '<a href="' . $list->getUrl(['func' => 'add']) . '#term"' . rex::getAccesskey($this->i18n('add'), 'add') . '><i class="rex-icon rex-icon-add-article"></i></a>' : '';
       $list->addColumn($thIcon, $tdIcon, 0, ['<th class="rex-table-icon">###VALUE###</th>', '<td class="rex-table-icon">###VALUE###</td>']);
       $list->setColumnParams($thIcon, ['func' => 'edit', 'pid' => '###pid###']);
-    */
+
 
     $list->removeColumn('pid');
     $list->removeColumn('description');
@@ -97,9 +101,9 @@ if ($func == '') {
     $list->setColumnFormat('active', 'custom', function($params) {
         $list = $params['list'];
         if ($list->getValue('active') == 1) {
-            $str = $list->getColumnLink('active', '<span class="rex-online"><i class="rex-icon rex-icon-active-true"></i> ' . $this->i18n('xoutputfilter_abbrev_activated') . '</span>');
+            $str = $list->getColumnLink('active', '<span class="rex-online"><i class="rex-icon rex-icon-active-true"></i> ' . $this->i18n('glossar_status_aktiviert') . '</span>');
         } else {
-            $str = $list->getColumnLink('active', '<span class="rex-offline"><i class="rex-icon rex-icon-active-false"></i> ' . $this->i18n('xoutputfilter_abbrev_deactivated') . '</span>');
+            $str = $list->getColumnLink('active', '<span class="rex-offline"><i class="rex-icon rex-icon-active-false"></i> ' . $this->i18n('glossar_status_deaktiviert') . '</span>');
         }
         return $str;
     });
@@ -138,16 +142,19 @@ if ($func == '') {
     $field->setLabel($this->i18n('glossar_label_term'));
     $field->getValidator()->add('notEmpty', $this->i18n('glossar_error_empty_term'));
 
-
     $field = $form->addTextAreaField('definition');
-    $field->setAttribute('style', 'height: 100px');
     $field->setLabel($this->i18n('glossar_label_definition'));
-    $field->getValidator()->add('notEmpty', $this->i18n('glossar_error_empty_definition'));
+    $field->setAttribute('onKeyDown', 'limitText(this,this.form.countdown,250)');
+    $field->setAttribute('onKeyDown', 'limitText(this,this.form.countdown,250)');
+    $field->setAttribute('id', 'def');
+    $field->setPrefix('<span class="maxcharacters">'.$this->i18n('glossar_max_characters').' <input readonly type="text" name="countdown" size="3" value="250" readonly="readonly" id="remain"></span>');
+     $field->getValidator()->add('notEmpty', $this->i18n('glossar_error_empty_definition'));
+
 
     $field = $form->addTextAreaField('description');
-    $field->setAttribute('class', ' markitupEditor-simple');
-     $field->setAttribute('id', ' value-1');
-      $field->setAttribute('style', 'width: 100%; margin-top: -10px; padding: 10px;');
+    $field->setAttribute('class', $editor);
+    $field->setAttribute('id', ' value-1');
+    $field->setAttribute('style', 'width: 100%; margin-top: -10px; padding: 10px;');
     $field->setLabel($this->i18n('glossar_label_description'));
 
     /*
@@ -173,36 +180,12 @@ if ($func == '') {
 echo $message;
 echo '<div id="glossar">'.$content.'</div>';
 ?>
-<style>
-
-#glossar td.rex-table-action {
-    width: auto !important;
+<script language="javascript" type="text/javascript">
+function limitText(limitField, limitCount, limitNum) {
+    if (limitField.value.length > limitNum) {
+        limitField.value = limitField.value.substring(0, limitNum);
+    } else {
+        limitCount.value = limitNum - limitField.value.length;
+    }
 }
-
-#glossar td.term {
-    min-width: 100px;
-}
-
-#glossar tr {
-    background-color: #f8f8f8;
-}
-
-#glossar th {
-    background-color: #fff;
-}
-
-#glossar .id {
-    padding-left: 15px
-}
-
-#glossar .id a {
-    color: #000;
-    opacity: 0.3;
-}
-
-#glossar .id a:hover {
-    opacity: 1;
-}
-
-
-</style>
+</script>

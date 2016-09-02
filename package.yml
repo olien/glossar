@@ -1,8 +1,8 @@
 package: glossar
-version: '0.3'
+version: '0.4'
 author: Oliver Kreischer
 supportpage: https://github.com/olien/glossar/issues
-compile: 0
+compile: 1
 
 page:
   title: 'translate:glossar'

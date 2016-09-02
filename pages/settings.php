@@ -1,6 +1,4 @@
 <?php
-
-
 $content =  "Hier kommen die Einstellungen hin...";
 
 $fragment = new rex_fragment();

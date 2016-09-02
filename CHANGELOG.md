@@ -1,6 +1,10 @@
 
 ### Changelog ###
 
+### 02.09.2016 Version 0.4 ###
+
+- Zeichenbegrenzung wird jetzt auch beim edit direkt (fast) richtig angezeigt
+- "Staus" Spalte sortierbar gemacht
 
 ### 30.08.2016 Version 0.3 ###
 

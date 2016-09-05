@@ -45,11 +45,9 @@ if (rex::isBackend() && rex::getUser()) {
 
     rex_extension::register('PAGES_PREPARED', function () {
 
-
-
       $count_languages = \rex_clang::getAll();
       // echo count($count_languages);
-      if (rex::getUser()->isAdmin() || rex::getUser()->hasPerm('glossar')) {
+      if (rex::getUser()->isAdmin() || rex::getUser()->hasPerm('glossar[general]')) {
         $page = \rex_be_controller::getPageObject('glossar/main');
         $clang_id = \rex_clang::getCurrentId();
         $clang_name = \rex_clang::get($clang_id)->getName();
@@ -74,14 +72,8 @@ if (rex::isBackend() && rex::getUser()) {
               );
             }
         }
-
-
-
     }
   });
-
-
-
 }
 
 

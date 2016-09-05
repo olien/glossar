@@ -1,17 +1,16 @@
-
 ###REDAXO-AddOn: Glossar###
 ---
 
 Zu jeder Sprache kann ein Begriff mit einer kurzen Definition und einer etwas längeren Beschreibung angegeben werden.
 
-+ neu angelegte Einträge müssen in der übersichtliste extra aktiviert werden.
-* ein Begriff wird immer in allen Sprachen angelegt.
-* ein Begriff wird immer in allen Sprachen gelöscht!
-* sofern eine Sprache glöscht wird werden auch alle Einträge der Glossar Tabelle für diese Sprache gelöscht.
-* wird eine Sprache hinzugefügt werden alle Glossareinträge der "Hauptspreache" kopiert und inaktiv gesetzt.
-
+* Nur Admins oder Benutzer die das Recht haben alle Sprachen zu bearbeiten können Einträge hinzufügen.
+* Nur Admins oder Benutzer die das Recht haben alle Sprachen zu bearbeiten können Einträge löschen.
++ Neu angelegte Einträge müssen in der Übersichtliste extra aktiviert werden.
+* Ein Begriff wird immer in allen Sprachen angelegt.
+* Ein Begriff wird immer in allen Sprachen gelöscht!
+* Sofern eine Sprache glöscht wird werden auch alle Einträge der Glossar Tabelle für diese Sprache gelöscht.
+* Wird eine Sprache hinzugefügt werden alle Glossar Einträge der "Hauptspreache" kopiert und inaktiv gesetzt.
 * Durch Klick auf die Tabellenbezeichner "ID" oder "Begriff" wird die Reihenfolge der Tabelle umsortiert.
-
 
 
 ---

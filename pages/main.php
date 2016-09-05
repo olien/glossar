@@ -1,5 +1,4 @@
 <?php
-
 $editor = '';
 //  Redactor2
 if(rex_addon::get('rex_redactor2')->isAvailable()) {
@@ -97,12 +96,24 @@ if ($func == '') {
   $list->setColumnLayout('edit', ['<th class="rex-table-action edit" colspan="3">###VALUE###</th>', '<td nowrap="nowrap" class="rex-table-action">###VALUE###</td>']);
   $list->setColumnParams('edit', ['func' => 'edit', 'pid' => '###pid###']);
 
+  if (rex::getUser()->isAdmin() || rex::getUser()->getComplexPerm('clang')->hasAll()) {
+    $list->addColumn('delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('delete'));
+    $list->setColumnLabel('delete', $this->i18n('function'));
+    $list->setColumnLayout('delete', ['', '<td class="rex-table-action">###VALUE###</td>']);
+    $list->setColumnParams('delete', ['func' => 'delete', 'term_id' => '###id###']);
+    $list->addLinkAttribute('delete', 'data-confirm', $this->i18n('delete') . ' ?');
+  } else {
+    $list->addColumn('delete', '');
+    $list->setColumnLayout('delete', ['', '<td class="rex-table-action"></td>']);
+  }
+
+/*
   $list->addColumn('delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('glossar_delete'));
   $list->setColumnLabel('delete', $this->i18n('function'));
   $list->setColumnLayout('delete', ['', '<td nowrap="nowrap" class="rex-table-action">###VALUE###</td>']);
   $list->setColumnParams('delete', ['func' => 'delete', 'term_id' => '###id###']);
   $list->addLinkAttribute('delete', 'data-confirm', $this->i18n('delete') . ' ?');
-
+*/
   $content .= $list->get();
 
   $fragment = new rex_fragment();
@@ -128,7 +139,7 @@ if ($func == '') {
   $field = $form->addTextAreaField('definition');
   $field->setLabel($this->i18n('glossar_label_definition'));
   $field->setAttribute('onKeyDown', 'limitText(this,this.form.countdown,250)');
-  $field->setAttribute('onKeyDown', 'limitText(this,this.form.countdown,250)');
+  $field->setAttribute('onKeyUp', 'limitText(this,this.form.countdown,250)');
   $field->setAttribute('id', 'def');
   $field->setPrefix('<span class="maxcharacters">'.$this->i18n('glossar_max_characters').' <input readonly type="text" name="countdown" size="3" value="250" readonly="readonly" id="remain"></span>');
   $field->getValidator()->add('notEmpty', $this->i18n('glossar_error_empty_definition'));
@@ -138,6 +149,7 @@ if ($func == '') {
   $field->setAttribute('id', ' value-1');
   $field->setAttribute('style', 'width: 100%; margin-top: -10px; padding: 10px;');
   $field->setLabel($this->i18n('glossar_label_description'));
+
 
   $content .= $form->get();
 
@@ -150,11 +162,22 @@ if ($func == '') {
 
 echo $message;
 echo '<div id="glossar">'.$content.'</div>';
+
+if (!rex::getUser()->isAdmin() AND !rex::getUser()->getComplexPerm('clang')->hasAll() AND  $func == 'edit') {
+  echo '
+  <script language="javascript" type="text/javascript">
+   $(".btn-toolbar .btn-delete").css("display","none");
+  </script>';
+}
 ?>
 <script language="javascript" type="text/javascript">
-$limit = 250;
-var currentleft = $limit-$("#def").val().length;
-$( "#remain" ).val(currentleft);
+
+if($('#def').length && $('#def').val().length) {
+  $limit = 250;
+  var currentleft = $limit-$("#def").val().length;
+  $( "#remain" ).val(currentleft);
+}
+
 function limitText(limitField, limitCount, limitNum) {
     if (limitField.value.length > limitNum) {
         limitField.value = limitField.value.substring(0, limitNum);

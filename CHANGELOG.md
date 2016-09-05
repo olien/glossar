@@ -1,6 +1,12 @@
 
 ### Changelog ###
 
+### 05.09.2016 Version 0.5 ###
+
+- Fehlerkorrektur
+- Zeichenbegrenzung wird jetzt richtig angezeigt
+- "Sprachbrechtigungen" werden berücksichtigt
+
 ### 02.09.2016 Version 0.4 ###
 
 - Zeichenbegrenzung wird jetzt auch beim edit direkt (fast) richtig angezeigt

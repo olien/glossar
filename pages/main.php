@@ -1,9 +1,9 @@
 <?php
 $editor = '';
 //  Redactor2
-if(rex_addon::get('rex_redactor2')->isAvailable()) {
-  if (!rex_redactor2::profileExists('simple')) {
-    rex_redactor2::insertProfile('simple', $this->i18n('glossar_redactorinfo'), '300', '800', 'relative', 'bold,italic,underline,deleted,quote,sub,sup,code,unorderedlist,grouplink[internal|external|mailto]');
+if (rex_addon::get('redactor2')->isAvailable()) {
+  if (!redactor2::profileExists('simple')) {
+    redactor2::insertProfile('simple', $this->i18n('glossar_redactorinfo'), '300', '800', 'relative','bold, italic, underline, deleted, sub, sup,  unorderedlist, orderedlist, grouplink[email|external|internal|media], cleaner');
   }
   $editor = 'redactorEditor2-simple';
 }
@@ -16,18 +16,18 @@ if(rex_addon::get('rex_markitup')->isAvailable()) {
   $editor = 'markitupEditor-simple';
 }
 
-$content = '';
-$message = '';
-
-$pid = rex_request('pid', 'int');
-$term_id = rex_request('term_id', 'int');
-$func = rex_request('func', 'string');
+$content  = '';
+$message  = '';
+$pid      = rex_request('pid', 'int');
+$term_id  = rex_request('term_id', 'int');
+$func     = rex_request('func', 'string');
 $clang_id = (int)str_replace('clang', '', rex_be_controller::getCurrentPagePart(3));
-$oid = rex_request('oid', 'int', -1);
+$oid      = rex_request('oid', 'int', -1);
 
 $error = '';
 $success = '';
 
+// delete
 if ($func == 'delete' && $term_id > 0) {
   $deleteTerm = rex_sql::factory();
   $deleteTerm->setQuery('DELETE FROM ' . rex::getTable('glossar') . ' WHERE id=?', [$term_id]);
@@ -36,6 +36,7 @@ if ($func == 'delete' && $term_id > 0) {
   unset($term_id);
 }
 
+// setstatus
 if ($func == 'setstatus') {
   $sql = rex_sql::factory();
   $status = (rex_request('oldstatus', 'int') + 1) % 2;
@@ -51,6 +52,7 @@ if ($func == 'setstatus') {
   $func = '';
 }
 
+// ausgabe der einträge
 if ($func == '') {
   $title = $this->i18n('glossar_title');
   $list = rex_list::factory('SELECT `pid`, `id`, `term`, `definition`, `description`, `active` FROM ' . rex::getTable('glossar') . ' WHERE `clang_id`="' . $clang_id . '" ORDER BY id DESC');
@@ -88,8 +90,8 @@ if ($func == '') {
   } else {
     $str = $list->getColumnLink('active', '<span class="rex-offline"><i class="rex-icon rex-icon-active-false"></i> ' . $this->i18n('glossar_status_deaktiviert') . '</span>');
   }
-  return $str;
-});
+    return $str;
+  });
 
   $list->addColumn('edit', '<i class="rex-icon rex-icon-edit edit"></i> ' . $this->i18n('glossar_edit'));
   $list->setColumnLabel('edit', '');
@@ -107,13 +109,6 @@ if ($func == '') {
     $list->setColumnLayout('delete', ['', '<td class="rex-table-action"></td>']);
   }
 
-/*
-  $list->addColumn('delete', '<i class="rex-icon rex-icon-delete"></i> ' . $this->i18n('glossar_delete'));
-  $list->setColumnLabel('delete', $this->i18n('function'));
-  $list->setColumnLayout('delete', ['', '<td nowrap="nowrap" class="rex-table-action">###VALUE###</td>']);
-  $list->setColumnParams('delete', ['func' => 'delete', 'term_id' => '###id###']);
-  $list->addLinkAttribute('delete', 'data-confirm', $this->i18n('delete') . ' ?');
-*/
   $content .= $list->get();
 
   $fragment = new rex_fragment();
@@ -122,6 +117,8 @@ if ($func == '') {
   $content = $fragment->parse('core/page/section.php');
 
 } else {
+
+  // add & edit
 
   $title = $func == 'edit' ? $this->i18n('glossar_title_edit') : $this->i18n('glossar_title_add');
 
@@ -149,7 +146,6 @@ if ($func == '') {
   $field->setAttribute('id', ' value-1');
   $field->setAttribute('style', 'width: 100%; margin-top: -10px; padding: 10px;');
   $field->setLabel($this->i18n('glossar_label_description'));
-
 
   $content .= $form->get();
 

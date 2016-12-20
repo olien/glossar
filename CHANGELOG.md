@@ -1,6 +1,10 @@
 
 ### Changelog ###
 
+### 20.12.2016 Version 0.5 ###
+
+- Einige Änderungen :-)
+
 ### 05.09.2016 Version 0.5 ###
 
 - Fehlerkorrektur

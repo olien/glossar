@@ -18,3 +18,6 @@ CREATE TABLE IF NOT EXISTS `rex_glossar` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 ');
 
+if (!$this->hasConfig()) {
+  $this->setConfig('status','deaktiviert');
+}

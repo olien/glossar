@@ -2,7 +2,18 @@
 
 if (!rex::isBackend()) {
   //if ($this->getConfig('status') != 'deaktiviert') {
+    
+    
     rex_extension::register('OUTPUT_FILTER', function(rex_extension_point $ep) {
+        
+        if (rex_addon::exists('yrewrite')) {
+            $domain_id = rex_yrewrite::getCurrentDomain()->getId();
+            $glossar_id = $this->getConfig('article_'.$domain_id);
+        } else {
+            $glossar_id = $this->getConfig('article');
+        }
+        
+        
       $content = $ep->getSubject();
       function GetBetween($var1="",$var2="",$pool){
         $temp1 = strpos($pool,$var1)+strlen($var1);
@@ -20,7 +31,7 @@ if (!rex::isBackend()) {
 
     $query = "SELECT * FROM rex_glossar WHERE active = '1' ORDER BY term ASC ";
     $sql = rex_sql::factory();
-    $sql->debugsql = 1;
+//    $sql->setDebug(1);
     $sql->setQuery($query);
 
     if ($sql->getRows() != 0) {
@@ -31,10 +42,17 @@ if (!rex::isBackend()) {
         $replace = '<a href="#hidden_content" class="boxer small button">'.$sql->getValue('begriff').'</a><div id="hidden_content" style="display: none;"><div class="inline_content"><h2>'.$sql->getValue('begriff').'</h2>'.$sql->getValue('text').'</div></div>';
         $replace = '<a href="'.rex_getUrl(43).'?tag_id=' . $sql->getValue('id') . '"><abbr class="glossarlink" title="<b>'.$sql->getValue('term').'</b><br/>'.$sql->getValue('definition').'" rel="tooltip">'.$sql->getValue('term').'</abbr></a>';
         */
-        $replace = '<abbr class="glossarlink" title="'.$sql->getValue('definition').'" rel="tooltip">'.$sql->getValue('term').'</abbr>';
+        $replace = '<dfn class="glossarlink" title="'.$sql->getValue('definition').'" rel="tooltip"><a href="'.rex_getUrl($glossar_id).'">'.$sql->getValue('term').'</a></dfn>';
         $markers = explode('|', $marker);
+//        print_r($markers);
         foreach ($markers as $search) {
-          $regEx ='\'(?!((<.*?)|((<a.*?)|(<h.*?))))(\b'. $search .'\b)(?!(([^<>]*?)>)|([^>]*?(</a>|</h.*?>)))\'si';
+          $search = addcslashes($search,'()');
+          if (strpos($search,' ')) {
+              $search = '\b'.$search;
+          } else {
+              $search = '\b'.$search.'\b';              
+          }
+          $regEx ='\'(?!((<.*?)|((<a.*?)|(<h.*?))))('. $search .')(?!(([^<>]*?)>)|([^>]*?(</a>|</h.*?>)))\'si';
           $content = preg_replace($regEx,$replace,$content,1);
         }
         $sql->next();
@@ -111,6 +129,4 @@ if (rex::isBackend() && rex::getUser()) {
     }
   });
 }
-
-
 

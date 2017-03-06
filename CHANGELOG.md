@@ -1,6 +1,11 @@
 
 ### Changelog ###
 
+### 20.12.2016 Version 0.6 ###
+
+- yrewrite Multidomainfähigkeit und erweiterte Suche. Danke an [Wolfgang](https://github.com/dtpop)
+
+
 ### 20.12.2016 Version 0.5 ###
 
 - Einige Änderungen :-)

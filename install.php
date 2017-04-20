@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS `rex_glossar` (
     `term` varchar(255) DEFAULT NULL,
     `definition` text,
     `description` text,
+    `media` varchar(255),    
     `createuser` varchar(255) NOT NULL,
     `updateuser` varchar(255) NOT NULL,
     `createdate` datetime NOT NULL,

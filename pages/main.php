@@ -147,6 +147,10 @@ if ($func == '') {
   $field->setAttribute('style', 'width: 100%; margin-top: -10px; padding: 10px;');
   $field->setLabel($this->i18n('glossar_label_description'));
 
+  $field = $form->addMediaField('media');
+  $field->setAttribute('style', 'width: 100%; margin-top: -10px; padding: 10px;');
+  $field->setLabel($this->i18n('glossar_label_media'));
+
   $content .= $form->get();
 
   $fragment = new rex_fragment();

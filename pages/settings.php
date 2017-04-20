@@ -109,7 +109,7 @@ $buttons = '
 // Ausgabe Formular
 $fragment = new rex_fragment();
 $fragment->setVar('class', 'edit');
-$fragment->setVar('title', $this->i18n('config'));
+$fragment->setVar('title', $this->i18n('glossar_settings'));
 $fragment->setVar('body', $content, false);
 $fragment->setVar('buttons', $buttons, false);
 $output = $fragment->parse('core/page/section.php');

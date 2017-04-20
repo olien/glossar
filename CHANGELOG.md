@@ -1,9 +1,14 @@
 
 ### Changelog ###
 
+
+### 20.04.2017 Version 0.8 ###
+
+- Media Feld hinzugefügt
+
 ### 20.12.2016 Version 0.7 ###
 
-- yrewrite Multidomainfähigkeit und erweiterte Suche. Danke an [Wolfgang](https://github.com/dtpop)
+- yrewrite Multidomainfähigkeit. Danke an [Wolfgang](https://github.com/dtpop)
 
 
 ### 20.12.2016 Version 0.6 ###

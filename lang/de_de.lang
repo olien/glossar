@@ -6,6 +6,9 @@ glossar_redactorinfo = Angelegt durch das Addon - Glossar -
 
 glossar_settings = Konfiguration
 glossar_max_characters = Verbleibende Zeichen:
+glossar_config_article = Artikel
+glossar_config_save = speichern
+
 
 glossar_info = Info
 glossar_info_readme = Readme
@@ -37,6 +40,8 @@ glossar_label_status = Status
 glossar_label_term = Begriff
 glossar_label_definition = Definition
 glossar_label_description = Beschreibung
+
+glossar_label_media = Bild
 
 glossar_status_aktiviert = aktiviert
 glossar_status_deaktiviert = deaktviert

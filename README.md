@@ -1,4 +1,8 @@
-###REDAXO-AddOn: Glossar###
+*ACHTUNG* Die Entwicklung ist inzwischen eingestellt. Es gibt jetzt das FOR AddOn MulitGlossar: https://github.com/FriendsOfREDAXO/multiglossar
+
+
+
+### REDAXO-AddOn: Glossar ###
 ---
 
 Zu jeder Sprache kann ein Begriff mit einer kurzen Definition und einer etwas längeren Beschreibung angegeben werden.
@@ -15,7 +19,7 @@ Zu jeder Sprache kann ein Begriff mit einer kurzen Definition und einer etwas l�
 
 ---
 
-###Ausgabe auf der Webseite###
+### Ausgabe auf der Webseite ###
 
 Da die Nutzung dieser Daten für jede Webseite individuell ist wird hier nicht näher auf die Ausgabemöglichkeiten eingegangen.
 
